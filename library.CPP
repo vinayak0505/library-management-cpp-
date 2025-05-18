@@ -1,11 +1,12 @@
-#include<conio.h>
-#include<iostream.h>
-#include<fstream.h>
+#include<iostream>
+#include<fstream>
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #include<string.h>
+#include<stdio.h>
 
+using namespace std;
 class bookinfo
 {
  public:
@@ -530,9 +531,9 @@ void library::checktime(long a)
  }
 }
 ///////////////////////////////////////////////////////////////////////////
-void main()
+int main()
 {
- clrscr();
+ cout<<"\033[2J\033[H";
  cout<<"\n";
  int ch,ch1,ch2,ch3,bno,a,b,c,ic;
  char w,y=y;
@@ -635,6 +636,8 @@ void main()
   else break;
  }
  cout<<"\nmore updates comming soon\n";
- getch();
+ int test;
+ cin>>test;
+ return 0;
 }
 
