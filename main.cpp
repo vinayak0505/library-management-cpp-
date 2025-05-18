@@ -35,14 +35,7 @@ int main()
 		switch (ch)
 		{
 		case 1:
-			cout << "\npress 1 to enter user information";
-			cout << "\npress 2 to display all users";
-			cout << "\npress 3 to search user by icard";
-			cout << "\npress 4 to edit user name";
-			cout << "\npress 5 to enter clear all existing user";
-			cout << "\npress 6 to exit";
-			cout << "\nenter a choise\n";
-			cin >> ch1;
+			ch1 = library::displayOptionAndGetInput();
 			switch (ch1)
 			{
 			case 1:
@@ -60,8 +53,8 @@ int main()
 				cout << "\nenter identity you want to edit\n";
 				cin >> ic;
 				student.edit(ic);
-				remove("shinchan.txt");
-				rename("temp.txt", "shinchan.txt");
+				remove("data/shinchan.txt");
+				rename("data/temp.txt", "data/shinchan.txt");
 				break;
 			case 5:
 				student.cleardata();

@@ -13,6 +13,7 @@ public:
   void lreturn(int no);
   void lreissue(int no);
   void checktime(long no);
+  static int displayOptionAndGetInput();
 } l;
 
 ////////////////////////////////////////////////////////////////////////////
@@ -200,8 +201,8 @@ void library::lreturn(int no)
   }
   lib.close();
   temp.close();
-  remove("lib.txt");
-  rename("temp.txt", "lib.txt");
+  remove("data/lib.txt");
+  rename("data/temp.txt", "data/lib.txt");
   cout << "\nrecord edited";
 }
 void library::lreissue(int no)
@@ -258,4 +259,18 @@ void library::checktime(long a)
       }
     }
   }
+}
+
+int library::displayOptionAndGetInput()
+{
+  int ch1;
+  cout << "\npress 1 to enter user information";
+  cout << "\npress 2 to display all users";
+  cout << "\npress 3 to search user by icard";
+  cout << "\npress 4 to edit user name";
+  cout << "\npress 5 to enter clear all existing user";
+  cout << "\npress 6 to exit";
+  cout << "\nenter a choise\n";
+  cin >> ch1;
+  return ch1;
 }

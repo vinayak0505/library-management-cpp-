@@ -146,5 +146,5 @@ void BookInfo::bchange(char oldbook[30]) // changes old store book
 }
 void BookInfo::clearbook()
 {
-  remove("BookInfo.txt");
+  remove("data/BookInfo.txt");
 }

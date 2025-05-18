@@ -15,7 +15,6 @@ public:
         cout << "\nenter identity of the person \n";
         int q = 9478554;
         cin >> RN;
-        int checkdata(int);
         q = checkdata(RN);
         if (q == 0)
         {
@@ -24,14 +23,13 @@ public:
             cin >> y;
             if (y == 1)
             {
-                void edit(int);
                 edit(RN);
-                remove("shinchan.txt");
-                rename("temp.txt", "shinchan.txt");
+                remove("data/shinchan.txt");
+                rename("data/temp.txt", "data/shinchan.txt");
             }
             else
             {
-                getdata();
+                // getdata();
             }
         }
         else
@@ -117,8 +115,8 @@ public:
                 }
             }
         }
-        remove("shinchan.txt");
-        rename("temp.txt", "shinchan.txt");
+        remove("data/shinchan.txt");
+        rename("data/temp.txt", "data/shinchan.txt");
     }
     void cleardata()
     {
