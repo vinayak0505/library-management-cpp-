@@ -29,7 +29,7 @@ public:
 			}
 			else
 			{
-				// getdata();
+				getdata();
 			}
 		}
 		else
@@ -135,7 +135,8 @@ void Student::displayOptionAndHandleInput()
 	cout << "\npress 3 to search user by icard";
 	cout << "\npress 4 to edit user name";
 	cout << "\npress 5 to enter clear all existing user";
-	cout << "\nother to goback\n";
+	cout << "\nother to go back";
+	cout << "\nenter a choise\n";
 	cin >> ch1;
 	int ic;
 	switch (ch1)

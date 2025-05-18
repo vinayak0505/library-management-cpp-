@@ -1,4 +1,4 @@
-class library : public BookInfo
+class library
 {
 public:
 	int lbno, luno;
@@ -22,6 +22,7 @@ public:
 		cout << "\npress 4 to reissue book if any issued before";
 		cout << "\npress 5 to return a book if taken";
 		cout << "\nother to go back";
+		cout << "\nenter a choise\n";
 		cin >> ch3;
 		switch (ch3)
 		{
