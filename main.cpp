@@ -1,10 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <string.h>
-#include <stdio.h>
 #include "book_info.cpp"
 #include "library.cpp"
 #include "student.cpp"
@@ -17,22 +14,26 @@ int main()
 	{
 		filesystem::create_directory("data");
 	}
-	int ch, ch1, ch2, ch3, bno, a, b, c, ic;
-	char w;
+
 	Student student;
-	for (int e = 0; e < 1;)
+
+	time_t now = time(0);
+	char *date = ctime(&now);
+	cout << "\ntodays date is " << date;
+	l.checktime(now);
+
+	char continue_program = 'y';
+	do
 	{
-		time_t now = time(0);
-		char *date = ctime(&now);
-		cout << "\ntodays date is " << date;
-		l.checktime(now);
 		cout << "\npress 1 for user information";
 		cout << "\npress 2 for book information";
 		cout << "\npress 3 for record information";
 		cout << "\nother to exit";
 		cout << "\nenter a choise\n";
-		cin >> ch;
-		switch (ch)
+
+		int choice;
+		cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			student.displayOptionAndHandleInput();
@@ -45,12 +46,9 @@ int main()
 			break;
 		}
 		cout << "\nwant to do some more stuff press y if yes or n to exit program\n";
-		cin >> w;
-		if (w != 'y')
-			break;
-	}
+		cin >> continue_program;
+	} while (continue_program == 'y');
+
 	cout << "\nprogram is closing";
-	int test;
-	cin >> test;
 	return 0;
 }
