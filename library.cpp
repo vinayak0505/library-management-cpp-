@@ -13,7 +13,38 @@ public:
   void lreturn(int no);
   void lreissue(int no);
   void checktime(long no);
-  static int displayOptionAndGetInput();
+  void displayOptionAndHandleInput()
+	{
+		int ch3, b, c;
+		cout << "\npress 1 to issue a book and store in record";
+		cout << "\npress 2 to display issued book with user";
+		cout << "\npress 3 to display all information all books ever issued book with user";
+		cout << "\npress 4 to reissue book if any issued before";
+		cout << "\npress 5 to return a book if taken";
+		cout << "\nother to go back";
+		cin >> ch3;
+		switch (ch3)
+		{
+		case 1:
+			merge();
+			break;
+		case 2:
+			ldisplay();
+			break;
+		case 3:
+			ldisplayall();
+			break;
+		case 4:
+			cout << "\nenter book no you want to issue ";
+			cin >> c;
+			lreissue(c);
+			break;
+		case 5:
+			cout << "\nenter book no you want to return";
+			cin >> b;
+			lreturn(b);
+		}
+	}
 } l;
 
 ////////////////////////////////////////////////////////////////////////////
@@ -261,16 +292,3 @@ void library::checktime(long a)
   }
 }
 
-int library::displayOptionAndGetInput()
-{
-  int ch1;
-  cout << "\npress 1 to enter user information";
-  cout << "\npress 2 to display all users";
-  cout << "\npress 3 to search user by icard";
-  cout << "\npress 4 to edit user name";
-  cout << "\npress 5 to enter clear all existing user";
-  cout << "\npress 6 to exit";
-  cout << "\nenter a choise\n";
-  cin >> ch1;
-  return ch1;
-}
