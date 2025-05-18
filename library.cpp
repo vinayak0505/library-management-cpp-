@@ -19,7 +19,7 @@ public:
 int library::lcheckuser(int a)
 {
   fstream lib;
-  lib.open("lib.txt", ios::in | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::binary);
   while (lib.read((char *)&l, sizeof(l)))
   {
     if (a == l.luno)
@@ -38,7 +38,7 @@ int library::lcheckuser(int a)
 int library::lcheckbook(int a)
 {
   fstream lib;
-  lib.open("lib.txt", ios::in | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::binary);
   while (lib)
   {
     lib.read((char *)&l, sizeof(l));
@@ -61,10 +61,10 @@ void library::merge()
   char a[30];
   int bno, uno, i = 0, q = 0;
   fstream book, user, lib, libr;
-  book.open("BookInfo.txt", ios::in | ios::binary);
-  user.open("shinchan.txt", ios::in);
-  lib.open("lib.txt", ios::out | ios::binary | ios::app);
-  libr.open("librecord.txt", ios::out | ios::binary | ios::app);
+  book.open("data/BookInfo.txt", ios::in | ios::binary);
+  user.open("data/shinchan.txt", ios::in);
+  lib.open("data/lib.txt", ios::out | ios::binary | ios::app);
+  libr.open("data/librecord.txt", ios::out | ios::binary | ios::app);
   cout << "\nenter user icard who wants to issue book ";
   cin >> uno;
   int k = l.lcheckuser(uno);
@@ -124,7 +124,7 @@ void library::ldisplay()
   int c = 0;
   char chr;
   fstream lib;
-  lib.open("lib.txt", ios::in | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::binary);
   for (; lib.read((char *)&l, sizeof(l));)
   {
     if (!l.luno == 0)
@@ -156,7 +156,7 @@ void library::ldisplayall()
   int c = 0;
   char chr;
   fstream libr;
-  libr.open("librecord.txt", ios::in | ios::binary);
+  libr.open("data/librecord.txt", ios::in | ios::binary);
   for (; libr.read((char *)&l, sizeof(l));)
   {
     cout << "\nperson i card no is " << l.luno << "| name is  " << l.luname << "\n";
@@ -181,8 +181,8 @@ void library::ldisplayall()
 void library::lreturn(int no)
 {
   fstream lib, temp;
-  lib.open("lib.txt", ios::in | ios::binary);
-  temp.open("temp.txt", ios::out | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::binary);
+  temp.open("data/temp.txt", ios::out | ios::binary);
   for (; lib.read((char *)&l, sizeof(l));)
   {
     if (no == l.lbno)
@@ -208,7 +208,7 @@ void library::lreissue(int no)
 {
   float a;
   fstream lib;
-  lib.open("lib.txt", ios::in | ios::out | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::out | ios::binary);
   for (; lib.read((char *)&l, sizeof(l));)
   {
     if (no == l.lbno)
@@ -231,7 +231,7 @@ void library::lreissue(int no)
 void library::checktime(long a)
 {
   fstream lib;
-  lib.open("lib.txt", ios::in | ios::binary);
+  lib.open("data/lib.txt", ios::in | ios::binary);
   for (; lib.read((char *)&l, sizeof(l));)
   {
     lib.read((char *)&l, sizeof(l));

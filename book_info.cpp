@@ -23,7 +23,7 @@ void BookInfo::bedit(int q)
   cout << "\nyou have choose to edit name\n";
   cout << "now type new name and we will handel the rest\n;)\n";
   fstream save;
-  save.open("BookInfo.txt", ios::in | ios::out | ios::binary);
+  save.open("data/BookInfo.txt", ios::in | ios::out | ios::binary);
   for (; save;)
   {
     long A = save.tellg();
@@ -45,7 +45,7 @@ void BookInfo::bgetdata() // takes and save it into BookInfo
 {
   int ch;
   fstream fout;
-  fout.open("BookInfo.txt", ios::out | ios::app | ios::binary);
+  fout.open("data/BookInfo.txt", ios::out | ios::app | ios::binary);
   cout << "\nenter book no. you want to store ";
   cin >> bno;
   int k = s.bcheckdata(bno);
@@ -76,7 +76,7 @@ int BookInfo::bcheckdata(int m) // checks the identity is taken or not and retur
 {
   s.bno = -4000;
   fstream save;
-  save.open("BookInfo.txt", ios::in | ios::binary);
+  save.open("data/BookInfo.txt", ios::in | ios::binary);
   for (; save;)
   {
     save.read((char *)&s, sizeof(s));
@@ -94,7 +94,7 @@ int BookInfo::bcheckdata(int m) // checks the identity is taken or not and retur
 void BookInfo::bdisplay() // shows all book name stored
 {
   fstream fin;
-  fin.open("BookInfo.txt", ios::in | ios::binary);
+  fin.open("data/BookInfo.txt", ios::in | ios::binary);
   while (fin.read((char *)&s, sizeof(s)))
   {
     cout << "\nno of book " << s.bno;
@@ -108,7 +108,7 @@ void BookInfo::bsearch()
   cout << "\nplease enter the book name you want to search by name ";
   gets(word);
   fstream fin;
-  fin.open("BookInfo.txt", ios::out | ios::in | ios::binary);
+  fin.open("data/BookInfo.txt", ios::out | ios::in | ios::binary);
   for (; !fin.eof();)
   {
     fin.read((char *)&s, sizeof(s));
@@ -128,7 +128,7 @@ void BookInfo::bsearch()
 void BookInfo::bchange(char oldbook[30]) // changes old store book
 {
   fstream fin;
-  fin.open("BookInfo.txt", ios::out | ios::in | ios::binary);
+  fin.open("data/BookInfo.txt", ios::out | ios::in | ios::binary);
   for (; fin;)
   {
     long a = fin.tellg();

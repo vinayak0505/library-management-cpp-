@@ -16,7 +16,7 @@ char name[30];
 void getdata() // store data or input value
 {
   fstream save;
-  save.open("shinchan.txt", ios::out | ios::ate);
+  save.open("data/shinchan.txt", ios::out | ios::ate);
   cout << "\nenter identity of the person \n";
   int q = 9478554;
   cin >> RN;
@@ -52,7 +52,7 @@ void search(int rn) // search user by rn
 {
   int un;
   fstream fin;
-  fin.open("shinchan.txt", ios::in);
+  fin.open("data/shinchan.txt", ios::in);
   while (fin >> un)
   {
     fin >> name;
@@ -66,7 +66,7 @@ void search(int rn) // search user by rn
 void display() // display data.
 {
   fstream take;
-  take.open("shinchan.txt", ios::in);
+  take.open("data/shinchan.txt", ios::in);
   for (; take >> RN;)
   {
     take >> name;
@@ -78,7 +78,7 @@ int checkdata(int k) // checks the identity is taken or not and returns 0 if tak
 {
   int RN = 94786856;
   fstream save;
-  save.open("shinchan.txt", ios::in);
+  save.open("data/shinchan.txt", ios::in);
   while (save >> RN)
   {
     if (RN == k)
@@ -98,8 +98,8 @@ void edit(int q)
   cout << "now type new name and we will handel the rest\n;)\n";
   int r = 1000;
   fstream save, temp;
-  save.open("shinchan.txt", ios::in);
-  temp.open("temp.txt", ios::out);
+  save.open("data/shinchan.txt", ios::in);
+  temp.open("data/temp.txt", ios::out);
   for (int m = 0; m == (save.eof());)
   {
     int g = 1;
@@ -129,7 +129,7 @@ void edit(int q)
 void cleardata()
 {
   fstream save;
-  save.open("shinchan.txt", ios::out);
+  save.open("data/shinchan.txt", ios::out);
   save.close();
 }
 /*----------------------------------------------------------------------*/
@@ -137,6 +137,9 @@ void cleardata()
 ///////////////////////////////////////////////////////////////////////////
 int main()
 {
+  if (!filesystem::exists("data")) {
+      filesystem::create_directory("data");
+  }
   cout << "\033[2J\033[H";
   cout << "\n";
   int ch, ch1, ch2, ch3, bno, a, b, c, ic;
