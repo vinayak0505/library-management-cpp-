@@ -5,23 +5,11 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
+#include "book_info.cpp"
 
 using namespace std;
-class bookinfo
-{
-public:
-  int bno;
-  char bookn[30];
 
-  void bgetdata();
-  void bdisplay();
-  void bsearch();
-  void bchange(char a[30]);
-  void bedit(int);
-  void clearbook();
-  int bcheckdata(int);
-} s;
-class library : public bookinfo
+class library : public BookInfo
 {
 public:
   int lbno, luno;
@@ -37,137 +25,7 @@ public:
   void lreissue(int no);
   void checktime(long no);
 } l;
-//////////////////////////////////////////////////////////////////////////
-void bookinfo::bedit(int q)
-{
-  cout << "\nyou have choose to edit name\n";
-  cout << "now type new name and we will handel the rest\n;)\n";
-  fstream save;
-  save.open("bookinfo.txt", ios::in | ios::out | ios::binary);
-  for (; save;)
-  {
-    long A = save.tellg();
-    save.read((char *)&s, sizeof(s));
-    if (bno == q)
-    {
-      gets(s.bookn);
 
-      cout << "\nname updated successfully\n";
-      save.seekp(A);
-      save.write((char *)&s, sizeof(s));
-      break;
-    }
-  }
-  save.close();
-}
-
-void bookinfo::bgetdata() // takes and save it into bookinfo
-{
-  int ch;
-  fstream fout;
-  fout.open("bookinfo.txt", ios::out | ios::app | ios::binary);
-  cout << "\nenter book no. you want to store ";
-  cin >> bno;
-  int k = s.bcheckdata(bno);
-  if (k == 1)
-  {
-    cout << "\nenter name of the book ";
-    gets(s.bookn);
-    fout.write((char *)&s, sizeof(s));
-    fout.close();
-  }
-  else
-  {
-    cout << "\nyou want to edit the name press 1 or";
-    cout << " to creat other identity press 0 ";
-    cin >> ch;
-    if (ch == 1)
-    {
-      bedit(s.bno);
-    }
-    else
-    {
-      bgetdata();
-    }
-  }
-  fout.close();
-}
-int bookinfo::bcheckdata(int m) // checks the identity is taken or not and returns 0 if taken
-{
-  s.bno = -4000;
-  fstream save;
-  save.open("bookinfo.txt", ios::in | ios::binary);
-  for (; save;)
-  {
-    save.read((char *)&s, sizeof(s));
-    if (s.bno == m)
-    {
-      cout << "\nthis identitiy is alredy taken by " << s.bookn;
-      save.close();
-      return (0);
-    }
-  }
-  s.bno = m;
-  save.close();
-  return (1);
-}
-void bookinfo::bdisplay() // shows all book name stored
-{
-  fstream fin;
-  fin.open("bookinfo.txt", ios::in | ios::binary);
-  while (fin.read((char *)&s, sizeof(s)))
-  {
-    cout << "\nno of book " << s.bno;
-    cout << "\nname of the book " << s.bookn;
-  }
-}
-void bookinfo::bsearch()
-{
-  int ch = 0;
-  char word[30];
-  cout << "\nplease enter the book name you want to search by name ";
-  gets(word);
-  fstream fin;
-  fin.open("bookinfo.txt", ios::out | ios::in | ios::binary);
-  for (; !fin.eof();)
-  {
-    fin.read((char *)&s, sizeof(s));
-    if (strcmp(s.bookn, word) == 0)
-    {
-      cout << "\nthis book is store at " << s.bno << "\nwant to change the book name press 1 for yes else 0 ";
-      cin >> ch;
-      if (ch == 1)
-      {
-        ch = 1;
-        bchange(word);
-      }
-    }
-  }
-  fin.close();
-}
-void bookinfo::bchange(char oldbook[30]) // changes old store book
-{
-  fstream fin;
-  fin.open("bookinfo.txt", ios::out | ios::in | ios::binary);
-  for (; fin;)
-  {
-    long a = fin.tellg();
-    fin.read((char *)&s, sizeof(s));
-    if (strcmp(s.bookn, oldbook) == 0)
-    {
-      cout << "\nenter name of new book you want to store ";
-      gets(s.bookn);
-      fin.seekp(a);
-      fin.write((char *)&s, sizeof(s));
-      cout << "\nname updated ";
-    }
-  }
-  fin.close();
-}
-void bookinfo::clearbook()
-{
-  remove("bookinfo.txt");
-}
 /*----------------------------------------------------------------------*/
 int RN = 0, ck;
 char name[30];
@@ -201,7 +59,7 @@ void getdata() // store data or input value
   {
     save << RN;
     cout << "\nenter name of the person\n";
-    gets(name);
+    cin>>name;
     save << " " << name << "\n";
     save.close();
   }
@@ -269,7 +127,7 @@ void edit(int q)
       if (RN == q)
       {
         save >> name;
-        gets(name);
+        cin>>name;
         temp << name << "\n";
         cout << "\nname updated successfully\n";
       }
@@ -337,7 +195,7 @@ void library::merge()
   char a[30];
   int bno, uno, i = 0, q = 0;
   fstream book, user, lib, libr;
-  book.open("bookinfo.txt", ios::in | ios::binary);
+  book.open("BookInfo.txt", ios::in | ios::binary);
   user.open("shinchan.txt", ios::in);
   lib.open("lib.txt", ios::out | ios::binary | ios::app);
   libr.open("librecord.txt", ios::out | ios::binary | ios::app);
